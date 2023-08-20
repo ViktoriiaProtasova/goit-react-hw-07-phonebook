@@ -1,19 +1,23 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { addContacts } from 'redux/contactsSlice';
-import PropTypes from 'prop-types';
+import { addContact } from 'redux/operations';
 
 const Form = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
   const dispatch = useDispatch();
-  const contacts = useSelector(state => state.contacts);
+  const contacts = useSelector(state => state.contacts.items);
 
-  const createContact = ({ name, number }) => {
+  const createContact = ({ name, phone }) => {
+    const newContact = {
+      name,
+      phone,
+    };
+
     if (contacts.find(contact => contact.name === name)) {
       alert(`Oops! ${name} is already in contacts.`);
     } else {
-      dispatch(addContacts({ name, number }));
+      dispatch(addContact(newContact));
     }
   };
 
@@ -76,7 +80,5 @@ const Form = () => {
     </form>
   );
 };
-
-Form.propTypes = { createContact: PropTypes.func.isRequired };
 
 export default Form;
