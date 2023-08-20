@@ -7,8 +7,8 @@ export const getAllContacts = async () => {
   return data;
 };
 
-export const setContact = async () => {
-  const { data } = await axios.post(`/contacts`);
+export const setContact = async credentials => {
+  const { data } = await axios.post(`/contacts`, credentials);
   return data;
 };
 
