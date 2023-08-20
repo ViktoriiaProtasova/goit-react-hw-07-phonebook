@@ -8,10 +8,10 @@ const Form = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(state => state.contacts.items);
 
-  const createContact = ({ name, phone }) => {
+  const createContact = ({ name, number }) => {
     const newContact = {
       name,
-      phone,
+      number,
     };
 
     if (contacts.find(contact => contact.name === name)) {
